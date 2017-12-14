@@ -9,8 +9,8 @@ import getpass
 
 
 
-
-
+commands.getoutput("mariadb -u root -e 'create database bascon'")
+commands.getoutput("mariadb -u root -e 'grant all privileges on bascon.* to 'dani'@'%' identified by 'dani' with grant option'") 
 
 
 
