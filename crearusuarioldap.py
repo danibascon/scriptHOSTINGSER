@@ -34,7 +34,8 @@ usuario=["dn: uid="+uid+",ou=People,dc=superhosting,dc=com\n",
 		"userPassword: "+contra+"\n",
 		"sn:: "+SN+"\n",
 		"mail: "+correo+"\n",
-		
+		"givenName: "+SN+"\n"]
+
 f=open('usuario.ldif','w')
 f.writelines(usuario)
 f.close()
