@@ -20,7 +20,7 @@ UID='4000'
 if UID in num:
 	UID = int(commands.getoutput("ldapsearch -x | grep '^uidNumber:' | egrep -o [0-9]{4} | sort | tail -n1")) +1
 
-usuario=["dn: uid="+uid+",dc=superhosting,dc=com \n",
+usuario=["dn: uid="+uid+",ou=People,dc=superhosting,dc=com \n",
 		"objectClass: top \n",
 		"objectClass: posixAccount \n",
 		"objectClass: inetOrgPerson \n",
