@@ -14,7 +14,7 @@ lista = commands.getoutput("ldapsearch -x  | grep '^uid:'")
 while uid=="" or uid in lista:
 	uid= raw_input("Dime un uid (usuario del sistema): ") 
 num=[]
-num.append(int(commands.getoutput("ldapsearch -x | grep '^uidNumber:' | egrep -o [0-9]{4}")))
+num.append(commands.getoutput("ldapsearch -x | grep '^uidNumber:' | egrep -o [0-9]{4}"))
 contra= getpass.getpass("Dime el passwd: ")
 UID='4000'
 if UID in num:
