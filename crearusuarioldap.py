@@ -12,7 +12,7 @@ uid=""
 lista=[]
 lista = commands.getoutput("ldapsearch -x  | grep '^uid:'")
 while uid=="" or uid in lista:
-	uid= raw_input("Dime un uid unico: ") 
+	uid= raw_input("Dime un uid (usuario del sistema): ") 
 num=[]
 num.append(int(commands.getoutput("ldapsearch -x | grep '^uidNumber:' | egrep -o [0-9]{4}")))
 contra= getpass.getpass("Dime el passwd: ")
@@ -28,7 +28,7 @@ usuario=["dn: uid="+uid+",dc=superhosting,dc=com \n",
 		"cn:: "+CN+" \n",
 		"uid: "+uid+" \n",
 		"uidNumber: "+UID+" \n",
-		"gidNumber: 2000 \n",
+		"gidNumber: 4000 \n",
 		"homeDirectory: /var/www/superhosting/"+uid+" \n",
 		"loginShell: /bin/bash \n",
 		"userPassword: "+contra+" \n",
@@ -41,7 +41,7 @@ f.writelines(usuario)
 f.close()
 
 
-commands.getoutput("ldapadd -x -h 172.22.200.109 -D 'cn=admin,dc=superhosting,dc=com' -w 'admin' -f usuario.ldif ")
+commands.getoutput("ldapadd -x -h 172.22.200.109 -D 'cn=admin,ou=People,dc=superhosting,dc=com' -w 'admin' -f usuario.ldif ")
 
 
 
