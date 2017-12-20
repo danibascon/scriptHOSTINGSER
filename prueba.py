@@ -12,14 +12,14 @@ SN=commands.getoutput("echo "+raw_input('Dime el primer apellido: ')+" | base64"
 correo=raw_input("Correo: ")
 uid=""
 lista=[]
-lista = commands.getoutput("slapsearch -x | grep '^uid:'")
+lista = commands.getoutput("cat prueba.txt| grep '^uid:'")
 while uid=="" or uid in lista:
 	uid= raw_input("Dime un uid unico: ") 
-num=int(commands.getoutput("slapsearch -x | grep '^uidNumber:' | egrep -o [0-9]{4}"))
-contra= commands.getoutput("slappasswd -s "+getpass.getpass("Dime el passwd: "))
+num=commands.getoutput("cat prueba.txt | grep '^uidNumber:' | egrep  -o '[0-9]{4}'")
+contra= getpass.getpass("Dime el passwd: ")
 UID='4000'
 if UID in num:
-	UID = int(commands.getoutput("slapsearch -x | grep '^uidNumber:' | egrep -o [0-9]{4} | tail -n1")) +1
+	UID = int(commands.getoutput("cat prueba.txt | grep '^uidNumber:' | egrep  -o '[0-9]{4}' | tail -n1")) +1
 
 usuario=["dn: uid='"+uid+",ou=People,dc=bascon,dc=gonzalonazareno,dc=org \n",
 		"objectClass: top \n",
@@ -37,7 +37,7 @@ usuario=["dn: uid='"+uid+",ou=People,dc=bascon,dc=gonzalonazareno,dc=org \n",
 		"mail: "+correo+" \n",
 		"givenName: "+SN+" \n"]
 
-f=open('usuario.ldif','a')
+f=open('prueba.ldif','a')
 f.writelines(usuario)
 f.close()
 
