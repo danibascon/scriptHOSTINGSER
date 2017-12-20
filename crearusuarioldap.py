@@ -20,28 +20,27 @@ UID='4000'
 if UID in num:
 	UID = int(commands.getoutput("ldapsearch -x | grep '^uidNumber:' | egrep -o [0-9]{4} | sort | tail -n1")) +1
 
-usuario=["dn: uid="+uid+",ou=People,dc=superhosting,dc=com \n",
-		"objectClass: top \n",
-		"objectClass: posixAccount \n",
-		"objectClass: inetOrgPerson \n",
-		"objectClass: person \n",
-		"cn:: "+CN+" \n",
-		"uid: "+uid+" \n",
-		"uidNumber: "+UID+" \n",
-		"gidNumber: 4000 \n",
-		"homeDirectory: /var/www/superhosting/"+uid+" \n",
-		"loginShell: /bin/bash \n",
-		"userPassword: "+contra+" \n",
-		"sn:: "+SN+" \n",
-		"mail: "+correo+" \n",
-		"givenName: "+SN+" \n"]
-
+usuario=["dn: uid="+uid+",ou=People,dc=superhosting,dc=com\n",
+		"objectClass: top\n",
+		"objectClass: posixAccount\n",
+		"objectClass: inetOrgPerson\n",
+		"objectClass: person\n",
+		"cn:: "+CN+"\n",
+		"uid: "+uid+"\n",
+		"uidNumber: "+UID+"\n",
+		"gidNumber: 4000\n",
+		"homeDirectory: /var/www/superhosting/"+uid+"\n",
+		"loginShell: /bin/bash\n",
+		"userPassword: "+contra+"\n",
+		"sn:: "+SN+"\n",
+		"mail: "+correo+"\n",
+		
 f=open('usuario.ldif','w')
 f.writelines(usuario)
 f.close()
 
 
-commands.getoutput("ldapadd -x -h 172.22.200.109 -D 'cn=admin,ou=People,dc=superhosting,dc=com' -w 'admin' -f usuario.ldif ")
+commands.getoutput("ldapadd -x -h 172.22.200.109 -D 'cn=admin,dc=superhosting,dc=com' -w 'admin' -f usuario.ldif ")
 
 
 
