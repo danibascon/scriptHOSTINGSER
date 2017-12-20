@@ -33,7 +33,7 @@ contra=raw_input('Dime la contra: ')
 
 
 commands.getoutput("mariadb -h 10.0.0.16 -u admin -p'admin' -e 'create database "+basedatos+"'")
-commands.getoutput("mariadb -h 10.0.0.16 -u admin -p'admin' -e 'grant all privileges on "basedatos".* to '"+nombre+"'@'%' identified by '"+contra+"'")
+commands.getoutput("mariadb -h 10.0.0.16 -u admin -p'admin' -e 'grant all privileges on "+basedatos+".* to '"+nombre+"'@'%' identified by '"+contra+"'")
 
 
 
