@@ -40,9 +40,8 @@ f=open('usuario.ldif','w')
 f.writelines(usuario)
 f.close()
 
-
 commands.getoutput("ldapadd -x -h 172.22.200.109 -D 'cn=admin,dc=superhosting,dc=com' -w 'admin' -f usuario.ldif ")
-
+commands.getoutput("ssh root@172.22.200.109 chown -R "+uid+":2000 /var/www/superhosting/"+uid)
 
 
 
